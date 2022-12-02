@@ -1,6 +1,10 @@
+using ArtistsCatalog.API.Startup;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+ServiceRegistrations.Register(builder.Services, builder.Configuration);
+DIRegistrations.Register(builder.Services);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

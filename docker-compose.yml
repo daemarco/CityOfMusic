@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  sqldata:
+    image: mcr.microsoft.com/mssql/server:2019-latest 
+
+  facility.api:
+    image: ${DOCKER_REGISTRY-}facilityapi
+    build:
+      context: .
+      dockerfile: src/Services/Facility/Facility.API/Dockerfile
+
+  artistscatalog.api:
+    image: ${DOCKER_REGISTRY-}artistscatalogapi
+    build:
+      context: .
+      dockerfile: src/Services/ArtistsCatalog/ArtistsCatalog.API/Dockerfile
+
