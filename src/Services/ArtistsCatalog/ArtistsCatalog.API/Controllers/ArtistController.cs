@@ -22,17 +22,19 @@ namespace ArtistsCatalog.API.Controllers
         [HttpGet]
         public IEnumerable<Artist> Get()
         {
-            return new List<Artist>
-            {
-                new Artist("Skyye"),
-                new Artist("Aerosmith"),//, new List<Member>{ new Member("Steven", "Tyler"), new Member("Joe", "Perry") }),
-                new Artist("Metallica")//, new List<Member>{ new Member("Kirk", "Hammet"), new Member("James", "Hetfield") })
-            };
+            throw new Exception("I am a wonderfule exception, am I?");
+
+            //return new List<Artist>
+            //{
+            //    new Artist("Skyye"),
+            //    new Artist("Aerosmith"),//, new List<Member>{ new Member("Steven", "Tyler"), new Member("Joe", "Perry") }),
+            //    new Artist("Metallica")//, new List<Member>{ new Member("Kirk", "Hammet"), new Member("James", "Hetfield") })
+            //};
         }
 
         //TODO-Marco - Enrich OpenAPI
         [HttpPost("[action]")]
-        public async Task<ActionResult<ArtistDTO>> Add([FromBody] AddArtistRequest request)
+        public async Task<ActionResult<ArtistDTO>> Add(AddArtistRequest request)
         { 
             return await _service.AddArtistRequest(request);
         }
