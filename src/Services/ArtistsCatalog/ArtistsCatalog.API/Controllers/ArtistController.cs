@@ -2,6 +2,7 @@ using ArtistsCatalog.API.Application.Requests;
 using ArtistsCatalog.API.Application.Responses;
 using ArtistsCatalog.API.Application.Services;
 using ArtistsCatalog.API.Domain.AggregatesModel.ArtistAggregate;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ArtistsCatalog.API.Controllers
@@ -22,7 +23,7 @@ namespace ArtistsCatalog.API.Controllers
         [HttpGet]
         public IEnumerable<Artist> Get()
         {
-            throw new Exception("I am a wonderfule exception, am I?");
+            throw new Exception("I am a wonderful exception, am I?");
 
             //return new List<Artist>
             //{
@@ -35,7 +36,7 @@ namespace ArtistsCatalog.API.Controllers
         //TODO-Marco - Enrich OpenAPI
         [HttpPost("[action]")]
         public async Task<ActionResult<ArtistDTO>> Add(AddArtistRequest request)
-        { 
+        {
             return await _service.AddArtistRequest(request);
         }
     }

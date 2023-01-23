@@ -2,6 +2,7 @@
 using ArtistsCatalog.API.Application.Responses;
 using ArtistsCatalog.API.Domain.AggregatesModel.ArtistAggregate;
 using AutoMapper;
+using FluentValidation;
 
 namespace ArtistsCatalog.API.Application.Services
 {
@@ -9,14 +10,18 @@ namespace ArtistsCatalog.API.Application.Services
     {
         private readonly IArtistRepository _repository;
         private readonly IMapper _mapper;
+        private readonly IValidator<Artist> _validator;
 
-        public ArtistService(IArtistRepository repository, IMapper mapper)
+        public ArtistService(
+            IArtistRepository repository, 
+            IMapper mapper, 
+            IValidator<Artist> validator)
         {
             _repository = repository;
             _mapper = mapper;
+            _validator = validator;
         }
         
-        //TODO-Marco - Check for validations, should reside in Domain Model
         public async Task<ArtistDTO> AddArtistRequest(AddArtistRequest request)
         {
             var artist = new Artist(request.Name);
@@ -26,6 +31,9 @@ namespace ArtistsCatalog.API.Application.Services
             }
 
             _repository.Add(artist);
+
+            // ref.: https://docs.fluentvalidation.net/en/latest/start.html#throwing-exceptions
+            _validator.ValidateAndThrow(artist);
 
             await _repository.UnitOfWork.SaveChangesAsync();//.SaveEntitiesAsync();
 

@@ -1,6 +1,8 @@
 ﻿using ArtistsCatalog.API.Application.Services;
+using ArtistsCatalog.API.Application.Validations;
 using ArtistsCatalog.API.Domain.AggregatesModel.ArtistAggregate;
 using ArtistsCatalog.API.Infrastructure.Repositories;
+using FluentValidation;
 
 namespace ArtistsCatalog.API.Startup
 {
@@ -11,6 +13,9 @@ namespace ArtistsCatalog.API.Startup
             #region Scoped
 
             services.AddScoped<IArtistRepository, ArtistRepository>();
+
+            services.AddScoped<IValidator<Artist>, ArtistValidator>();
+            services.AddScoped<IValidator<Member>, MemberValidator>();
 
             #endregion
 

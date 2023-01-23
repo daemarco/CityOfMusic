@@ -4,8 +4,9 @@ namespace ArtistsCatalog.API.Application.Requests
 {
     public class AddArtistRequest
     {
-        [Required]
-        [MaxLength(50, ErrorMessage = "Field Length invalid test custom msg")]
+        [Display(Name = "Artist Name")]
+        [Required(ErrorMessage = "{0} is a Required Field")]
+        [MaxLength(50, ErrorMessage = "Field {0} Length invalid test custom msg")]
         public string Name { get; set; }
         public IEnumerable<MemberItem> Members { get; set; }
     }

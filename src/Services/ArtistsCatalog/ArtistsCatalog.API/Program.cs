@@ -1,3 +1,4 @@
+using ArtistsCatalog.API.Infrastructure.Filters;
 using ArtistsCatalog.API.Startup;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,7 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 ServiceRegistrations.Register(builder.Services, builder.Configuration);
 DIRegistrations.Register(builder.Services);
 
-builder.Services.AddControllers()
+builder.Services.AddControllers(options => 
+    {
+        options.Filters.Add(typeof(HttpGlobalExceptionFilter));
+    })
     .ConfigureApiBehaviorOptions(options =>
     {
         options.InvalidModelStateResponseFactory = context =>
