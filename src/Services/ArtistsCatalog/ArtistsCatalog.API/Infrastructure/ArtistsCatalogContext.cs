@@ -1,5 +1,6 @@
 ﻿using ArtistsCatalog.API.Domain.AggregatesModel.ArtistAggregate;
 using ArtistsCatalog.API.Domain.SeedWork;
+using ArtistsCatalog.API.Infrastructure.EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace ArtistsCatalog.API.Infrastructure
@@ -18,9 +19,8 @@ namespace ArtistsCatalog.API.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Artist>()
-                .HasMany(m => m.Members)
-                .WithOne();
+            modelBuilder.ApplyConfiguration(new ArtistEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new MemberEntityTypeConfiguration());
         }
 
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
