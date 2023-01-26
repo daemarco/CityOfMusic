@@ -13,8 +13,6 @@ namespace ArtistsCatalog.API.Infrastructure.EntityConfigurations
                 .WithOne();
 
             builder.Property(m => m.Name).IsRequired().HasMaxLength(250);
-
-            builder.Property(m => m.Members).IsRequired();
         }
     }
 }

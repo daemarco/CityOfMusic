@@ -4,6 +4,7 @@ using ArtistsCatalog.API.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArtistsCatalog.API.Infrastructure.Migrations
 {
     [DbContext(typeof(ArtistsCatalogContext))]
-    partial class ArtistsCatalogContextModelSnapshot : ModelSnapshot
+    [Migration("20230123154956_UpdateWithFluentAPI")]
+    partial class UpdateWithFluentAPI
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
