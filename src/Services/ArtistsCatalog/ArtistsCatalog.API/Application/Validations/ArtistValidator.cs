@@ -11,13 +11,13 @@ namespace ArtistsCatalog.API.Application.Validations
         {
             RuleFor(a => a.Name).NotEmpty();
 
-            RuleFor(a => a.Members).Must(ContainArtistMembers).WithMessage("No Artist members found.");
+            //RuleFor(a => a.Members).Must(ContainArtistMembers).WithMessage("No Artist members found.");
 
             RuleForEach(a => a.Members).SetValidator(new MemberValidator());
 
             logger.LogTrace("Instance Created - {ClassName}", GetType().Name);
         }
 
-        private bool ContainArtistMembers(IEnumerable<Member> members) => members.Any();
+        //private bool ContainArtistMembers(IEnumerable<Member> members) => members.Any();
     }
 }

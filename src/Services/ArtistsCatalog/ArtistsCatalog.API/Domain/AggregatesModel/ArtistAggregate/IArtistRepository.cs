@@ -7,5 +7,6 @@ namespace ArtistsCatalog.API.Domain.AggregatesModel.ArtistAggregate
         Artist Add(Artist artist); 
         
         string[] GetAllArtistNames();
+        string[] GetAllRegisteredMembersPasswordsIds();
     }
 }

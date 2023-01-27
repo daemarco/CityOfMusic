@@ -18,7 +18,7 @@ namespace ArtistsCatalog.API.Domain.AggregatesModel.ArtistAggregate
 
         public static Artist Create(string name, string[] allArtistNames)
         {
-            if (allArtistNames.Contains(name))
+            if (allArtistNames.Contains(name, StringComparer.InvariantCultureIgnoreCase))
                 throw new ArtistsCatalogDomainException("Artist name in use already.");
 
             return new Artist(name);
@@ -30,9 +30,9 @@ namespace ArtistsCatalog.API.Domain.AggregatesModel.ArtistAggregate
         /// between the whole Aggregate
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
-        public void AddArtistMember(string name, string surname)
+        public void AddArtistMember(string passportId, string name, string surname, string[] registeredMembersPasswordsIds)
         {
-            Members.Add(new Member(name, surname));
+            Members.Add(Member.Create(passportId, name, surname, registeredMembersPasswordsIds));
         }
     }
 }

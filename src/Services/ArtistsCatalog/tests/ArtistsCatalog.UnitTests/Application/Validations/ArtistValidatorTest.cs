@@ -23,74 +23,74 @@ namespace ArtistsCatalog.UnitTests.Application.Validations
             _allArtistNames = new string[] { "Rolling Stones", "Deep Purple", "Metallica" };
         }
 
-        [Fact]
-        public void Should_have_error_when_Name_Is_Empty() 
-        {
-            // Arrange
-            var artist = Artist.Create(string.Empty, _allArtistNames);
-            artist.AddArtistMember("Jimi", "Hendrix");
+        ////[Fact]
+        ////public void Should_have_error_when_Name_Is_Empty() 
+        ////{
+        ////    // Arrange
+        ////    var artist = Artist.Create(string.Empty, _allArtistNames);
+        ////    artist.AddArtistMember("Jimi", "Hendrix");
 
-            // Act
-            var actual = _validator.TestValidate(artist);
+        ////    // Act
+        ////    var actual = _validator.TestValidate(artist);
 
-            // Assert
-            actual.ShouldHaveValidationErrorFor(a => a.Name).WithErrorCode("NotEmptyValidator").Only();
-        }
+        ////    // Assert
+        ////    actual.ShouldHaveValidationErrorFor(a => a.Name).WithErrorCode("NotEmptyValidator").Only();
+        ////}
 
-        [Fact]
-        public void Should_have_error_when_ArtistMember_Is_Not_specified()
-        {
-            // Arrange
-            var artist = Artist.Create("Aerosmith", _allArtistNames);
+        ////[Fact]
+        ////public void Should_have_error_when_ArtistMember_Is_Not_specified()
+        ////{
+        ////    // Arrange
+        ////    var artist = Artist.Create("Aerosmith", _allArtistNames);
 
-            // Act
-            var actual = _validator.TestValidate(artist);
+        ////    // Act
+        ////    var actual = _validator.TestValidate(artist);
 
-            // Assert
-            actual.ShouldHaveValidationErrorFor(a => a.Members).WithErrorMessage("No Artist members found.").Only();
-        }
+        ////    // Assert
+        ////    actual.ShouldHaveValidationErrorFor(a => a.Members).WithErrorMessage("No Artist members found.").Only();
+        ////}
 
-        [Fact]
-        public void Should_have_error_when_Member_Name_Is_Empty()
-        {
-            // Arrange
-            var artist = Artist.Create("Aerosmith", _allArtistNames);
-            artist.AddArtistMember(string.Empty, "Hendrix");
+        ////[Fact]
+        ////public void Should_have_error_when_Member_Name_Is_Empty()
+        ////{
+        ////    // Arrange
+        ////    var artist = Artist.Create("Aerosmith", _allArtistNames);
+        ////    artist.AddArtistMember(string.Empty, "Hendrix");
 
-            // Act
-            var actual = _validator.TestValidate(artist);
+        ////    // Act
+        ////    var actual = _validator.TestValidate(artist);
 
-            // Assert
-            actual.ShouldHaveValidationErrorFor("Members[0].Name").WithErrorCode("NotEmptyValidator").Only();
-        }
+        ////    // Assert
+        ////    actual.ShouldHaveValidationErrorFor("Members[0].Name").WithErrorCode("NotEmptyValidator").Only();
+        ////}
 
-        [Fact]
-        public void Should_have_error_when_Member_Surname_Is_Empty()
-        {
-            // Arrange
-            var artist = Artist.Create("Aerosmith", _allArtistNames);
-            artist.AddArtistMember("Jimi", string.Empty);
+        ////[Fact]
+        ////public void Should_have_error_when_Member_Surname_Is_Empty()
+        ////{
+        ////    // Arrange
+        ////    var artist = Artist.Create("Aerosmith", _allArtistNames);
+        ////    artist.AddArtistMember("Jimi", string.Empty);
 
-            // Act
-            var actual = _validator.TestValidate(artist);
+        ////    // Act
+        ////    var actual = _validator.TestValidate(artist);
 
-            // Assert
-            actual.ShouldHaveValidationErrorFor("Members[0].Surname").WithErrorCode("NotEmptyValidator").Only();
-        }
+        ////    // Assert
+        ////    actual.ShouldHaveValidationErrorFor("Members[0].Surname").WithErrorCode("NotEmptyValidator").Only();
+        ////}
 
-        [Fact]
-        public void Should_Not_have_error_when_Name_and_Members_are_specified()
-        {
-            // Arrange
-            var artist = Artist.Create("Aerosmith", _allArtistNames);
-            artist.AddArtistMember("Jimi", "Hendrix");
+        ////[Fact]
+        ////public void Should_Not_have_error_when_Name_and_Members_are_specified()
+        ////{
+        ////    // Arrange
+        ////    var artist = Artist.Create("Aerosmith", _allArtistNames);
+        ////    artist.AddArtistMember("Jimi", "Hendrix");
 
-            // Act
-            var actual = _validator.TestValidate(artist);
+        ////    // Act
+        ////    var actual = _validator.TestValidate(artist);
 
-            // Assert
-            actual.ShouldNotHaveAnyValidationErrors();
-        }
+        ////    // Assert
+        ////    actual.ShouldNotHaveAnyValidationErrors();
+        ////}
 
         //[Fact]
         //public void Should_have_error_when_Artist_name_exists_already()

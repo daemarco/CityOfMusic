@@ -8,6 +8,7 @@ namespace ArtistsCatalog.API.Infrastructure.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Member> builder)
         {
+            builder.Property(m => m.PassportId).IsRequired().HasMaxLength(10);
             builder.Property(m => m.Name).IsRequired().HasMaxLength(50);
             builder.Property(m => m.Surname).IsRequired().HasMaxLength(50);
         }

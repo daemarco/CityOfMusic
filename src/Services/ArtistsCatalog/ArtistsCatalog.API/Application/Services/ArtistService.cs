@@ -25,17 +25,19 @@ namespace ArtistsCatalog.API.Application.Services
         public async Task<ArtistDTO> AddArtist(AddArtistRequest request)
         {
             var allArtistsNames = _repository.GetAllArtistNames();
-            
+
+            var registeredMembersPasswordsIds = _repository.GetAllRegisteredMembersPasswordsIds();
+
             var artist = Artist.Create(request.Name, allArtistsNames);
             foreach (var member in request.Members)
             {
-                artist.AddArtistMember(member.Name, member.Surname);
+                artist.AddArtistMember(member.PassportId, member.Name, member.Surname, registeredMembersPasswordsIds);
             }
 
             _repository.Add(artist);
 
             // ref.: https://docs.fluentvalidation.net/en/latest/start.html#throwing-exceptions
-            //TODO-Marco - "think" still I need to do it "here"?
+            //TODO-Marco - "think" still I need to do it "here"? I start thinking FluentValidation would need to be applied to the command/request obj instead....
             _validator.ValidateAndThrow(artist);
 
             await _repository.UnitOfWork.SaveChangesAsync();//.SaveEntitiesAsync();

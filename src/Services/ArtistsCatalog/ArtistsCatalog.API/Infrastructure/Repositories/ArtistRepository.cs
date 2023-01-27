@@ -14,7 +14,7 @@ namespace ArtistsCatalog.API.Infrastructure.Repositories
 
         public Artist Add(Artist artist)
         {
-            //TODO-Marco - check for validations
+            //TODO-Marco - check for validations ....
             if (artist.IsTransient())
             {
                 return _context.Artists.Add(artist).Entity;
@@ -26,6 +26,11 @@ namespace ArtistsCatalog.API.Infrastructure.Repositories
         public string[] GetAllArtistNames()
         {
             return _context.Artists.Select(x => x.Name).ToArray();
+        }
+
+        public string[] GetAllRegisteredMembersPasswordsIds()
+        {
+            return _context.Artists.SelectMany(a => a.Members).Select(m => m.PassportId).ToArray();
         }
     }
 }
