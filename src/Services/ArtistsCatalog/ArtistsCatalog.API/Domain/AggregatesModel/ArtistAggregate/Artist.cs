@@ -1,5 +1,5 @@
-﻿using ArtistsCatalog.API.Domain.SeedWork;
-using System.Diagnostics.CodeAnalysis;
+﻿using ArtistsCatalog.API.Domain.Exceptions;
+using ArtistsCatalog.API.Domain.SeedWork;
 
 namespace ArtistsCatalog.API.Domain.AggregatesModel.ArtistAggregate
 {
@@ -10,10 +10,18 @@ namespace ArtistsCatalog.API.Domain.AggregatesModel.ArtistAggregate
 
         public List<Member> Members { get; private set; }
 
-        public Artist(string name)
+        private Artist(string name)
         {
             Members = new List<Member>();
             Name = name;            
+        }
+
+        public static Artist Create(string name, string[] allArtistNames)
+        {
+            if (allArtistNames.Contains(name))
+                throw new ArtistsCatalogDomainException("Artist name in use already.");
+
+            return new Artist(name);
         }
 
         /// <summary>

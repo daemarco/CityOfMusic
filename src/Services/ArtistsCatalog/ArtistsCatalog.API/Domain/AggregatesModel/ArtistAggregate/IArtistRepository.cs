@@ -4,6 +4,8 @@ namespace ArtistsCatalog.API.Domain.AggregatesModel.ArtistAggregate
 {
     public interface IArtistRepository : IRepository<Artist>
     {
-        Artist Add(Artist artist);
+        Artist Add(Artist artist); 
+        
+        string[] GetAllArtistNames();
     }
 }

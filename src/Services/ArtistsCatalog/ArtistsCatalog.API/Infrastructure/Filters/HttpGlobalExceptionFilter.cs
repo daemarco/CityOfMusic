@@ -1,8 +1,8 @@
-﻿using ArtistsCatalog.API.Infrastructure.ActionResults;
+﻿using ArtistsCatalog.API.Domain.Exceptions;
+using ArtistsCatalog.API.Infrastructure.ActionResults;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.Logging;
 using System.Net;
 
 namespace ArtistsCatalog.API.Infrastructure.Filters
@@ -18,12 +18,14 @@ namespace ArtistsCatalog.API.Infrastructure.Filters
             _logger = logger;
         }
 
+        //TODO-Marco - better code formatting
         public void OnException(ExceptionContext context)
         {
             //TODO-Marco - understand "EventId"
             _logger.LogError(new EventId(context.Exception.HResult), context.Exception, context.Exception.Message);
 
-            if (context.Exception.GetType() == typeof(ValidationException))
+            if ((context.Exception.GetType() == typeof(ValidationException))
+                || (context.Exception.GetType() == typeof(ArtistsCatalogDomainException)))
             {
                 var problemDetails = new ValidationProblemDetails()
                 {

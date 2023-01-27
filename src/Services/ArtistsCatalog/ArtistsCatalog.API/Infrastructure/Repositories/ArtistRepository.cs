@@ -22,5 +22,10 @@ namespace ArtistsCatalog.API.Infrastructure.Repositories
 
             return artist;
         }
+
+        public string[] GetAllArtistNames()
+        {
+            return _context.Artists.Select(x => x.Name).ToArray();
+        }
     }
 }

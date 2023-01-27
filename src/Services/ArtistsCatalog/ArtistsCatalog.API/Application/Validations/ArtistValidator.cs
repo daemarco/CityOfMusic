@@ -4,7 +4,7 @@ using FluentValidation;
 namespace ArtistsCatalog.API.Application.Validations
 {
     //TODO-Marco - Unit Tests
-    //TODO-Marco - check correctness of th namespace
+    //TODO-Marco - check correctness of the namespace
     public class ArtistValidator : AbstractValidator<Artist>
     {
         public ArtistValidator(ILogger<ArtistValidator> logger)
@@ -14,7 +14,6 @@ namespace ArtistsCatalog.API.Application.Validations
             RuleFor(a => a.Members).Must(ContainArtistMembers).WithMessage("No Artist members found.");
 
             RuleForEach(a => a.Members).SetValidator(new MemberValidator());
-
 
             logger.LogTrace("Instance Created - {ClassName}", GetType().Name);
         }

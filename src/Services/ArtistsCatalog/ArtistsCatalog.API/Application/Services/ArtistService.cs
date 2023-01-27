@@ -22,9 +22,11 @@ namespace ArtistsCatalog.API.Application.Services
             _validator = validator;
         }
         
-        public async Task<ArtistDTO> AddArtistRequest(AddArtistRequest request)
+        public async Task<ArtistDTO> AddArtist(AddArtistRequest request)
         {
-            var artist = new Artist(request.Name);
+            var allArtistsNames = _repository.GetAllArtistNames();
+            
+            var artist = Artist.Create(request.Name, allArtistsNames);
             foreach (var member in request.Members)
             {
                 artist.AddArtistMember(member.Name, member.Surname);
@@ -33,6 +35,7 @@ namespace ArtistsCatalog.API.Application.Services
             _repository.Add(artist);
 
             // ref.: https://docs.fluentvalidation.net/en/latest/start.html#throwing-exceptions
+            //TODO-Marco - "think" still I need to do it "here"?
             _validator.ValidateAndThrow(artist);
 
             await _repository.UnitOfWork.SaveChangesAsync();//.SaveEntitiesAsync();

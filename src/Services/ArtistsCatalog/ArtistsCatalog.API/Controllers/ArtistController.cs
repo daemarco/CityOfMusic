@@ -37,7 +37,7 @@ namespace ArtistsCatalog.API.Controllers
         [HttpPost("[action]")]
         public async Task<ActionResult<ArtistDTO>> Add(AddArtistRequest request)
         {
-            return await _service.AddArtistRequest(request);
+            return await _service.AddArtist(request);
         }
     }
 }

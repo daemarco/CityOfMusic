@@ -5,6 +5,6 @@ namespace ArtistsCatalog.API.Application.Services
 {
     public interface IArtistService
     {
-        Task<ArtistDTO> AddArtistRequest(AddArtistRequest request);
+        Task<ArtistDTO> AddArtist(AddArtistRequest request);
     }
 }
