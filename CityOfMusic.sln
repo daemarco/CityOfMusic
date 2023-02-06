@@ -21,7 +21,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtistsCatalog.API", "src\S
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{12F90210-CEF1-4C25-99F3-1FDB1F804DFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtistsCatalog.UnitTests", "src\Services\ArtistsCatalog\tests\ArtistsCatalog.UnitTests\ArtistsCatalog.UnitTests.csproj", "{CA8EDDDC-B8A4-4839-B1B2-B4AB5DA7E38E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtistsCatalog.UnitTests", "src\Services\ArtistsCatalog\tests\ArtistsCatalog.UnitTests\ArtistsCatalog.UnitTests.csproj", "{CA8EDDDC-B8A4-4839-B1B2-B4AB5DA7E38E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EB71E2A6-A68D-478D-BE18-982436F4C8B6}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
