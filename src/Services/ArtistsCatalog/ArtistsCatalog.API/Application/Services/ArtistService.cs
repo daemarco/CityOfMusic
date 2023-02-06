@@ -1,5 +1,6 @@
 ﻿using ArtistsCatalog.API.Application.Requests;
 using ArtistsCatalog.API.Application.Responses;
+using ArtistsCatalog.API.Application.Validations;
 using ArtistsCatalog.API.Domain.AggregatesModel.ArtistAggregate;
 using AutoMapper;
 using FluentValidation;
@@ -10,20 +11,23 @@ namespace ArtistsCatalog.API.Application.Services
     {
         private readonly IArtistRepository _repository;
         private readonly IMapper _mapper;
-        private readonly IValidator<Artist> _validator;
+        private readonly IValidator<AddArtistRequest> _addArtistRequestValidator;
 
         public ArtistService(
             IArtistRepository repository, 
             IMapper mapper, 
-            IValidator<Artist> validator)
+            IValidator<AddArtistRequest> addArtistRequestValidator)
         {
             _repository = repository;
             _mapper = mapper;
-            _validator = validator;
+            _addArtistRequestValidator = addArtistRequestValidator;
         }
         
         public async Task<ArtistDTO> AddArtist(AddArtistRequest request)
         {
+            // ref.: https://docs.fluentvalidation.net/en/latest/start.html#throwing-exceptions
+            _addArtistRequestValidator.ValidateAndThrow(request);
+
             var allArtistsNames = _repository.GetAllArtistNames();
 
             var registeredMembersPasswordsIds = _repository.GetAllRegisteredMembersPasswordsIds();
@@ -35,10 +39,6 @@ namespace ArtistsCatalog.API.Application.Services
             }
 
             _repository.Add(artist);
-
-            // ref.: https://docs.fluentvalidation.net/en/latest/start.html#throwing-exceptions
-            //TODO-Marco - "think" still I need to do it "here"? I start thinking FluentValidation would need to be applied to the command/request obj instead....
-            _validator.ValidateAndThrow(artist);
 
             await _repository.UnitOfWork.SaveChangesAsync();//.SaveEntitiesAsync();
 

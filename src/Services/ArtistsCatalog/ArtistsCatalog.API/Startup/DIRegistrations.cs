@@ -1,4 +1,5 @@
-﻿using ArtistsCatalog.API.Application.Services;
+﻿using ArtistsCatalog.API.Application.Requests;
+using ArtistsCatalog.API.Application.Services;
 using ArtistsCatalog.API.Application.Validations;
 using ArtistsCatalog.API.Domain.AggregatesModel.ArtistAggregate;
 using ArtistsCatalog.API.Infrastructure.Repositories;
@@ -14,8 +15,9 @@ namespace ArtistsCatalog.API.Startup
 
             services.AddScoped<IArtistRepository, ArtistRepository>();
 
-            services.AddScoped<IValidator<Artist>, ArtistValidator>();
-            services.AddScoped<IValidator<Member>, MemberValidator>();
+            services.AddScoped<IValidator<AddArtistRequest>, AddArtistRequestValidator>();
+            //services.AddScoped<IValidator<Artist>, ArtistValidator>();
+            //services.AddScoped<IValidator<Member>, MemberValidator>();
 
             #endregion
 

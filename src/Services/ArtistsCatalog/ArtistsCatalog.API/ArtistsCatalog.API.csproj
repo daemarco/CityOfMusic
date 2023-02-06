@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Application\Validations\Common\" />
     <Folder Include="Infrastructure\Migrations\" />
     <Folder Include="Models\" />
   </ItemGroup>
